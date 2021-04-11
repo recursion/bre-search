@@ -7,13 +7,16 @@
 	import { navState } from "./stores/nav";
 	import { locationsMap } from "./stores/locations";
 	import { priceMap } from "./stores/price";
+	import { roomsMap } from "./stores/rooms";
 	import { onMount } from "svelte";
 	const saveSearch = () => console.log("Saving search!");
-	export let locations, priceMin, priceMax;
+	export let locations, priceMin, priceMax, bedrooms, bathrooms;
 	onMount(() => {
 		locationsMap.setLocationEl(locations);
 		priceMap.setMaxPriceEl(priceMax);
 		priceMap.setMinPriceEl(priceMin);
+		roomsMap.setBedroomsEl(bedrooms);
+		roomsMap.setBathroomsEl(bathrooms);
 	});
 </script>
 

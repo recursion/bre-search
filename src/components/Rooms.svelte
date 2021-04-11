@@ -1,12 +1,19 @@
 <script>
-    let bedsSelected = "";
-    let bathsSelected = "";
+    import { roomsMap } from "../stores/rooms";
     import Room from "./Room.svelte";
 </script>
 
 <div class="rooms-wrapper">
-    <Room selected={bedsSelected} name="Bedrooms" />
-    <Room selected={bathsSelected} name="Bathrooms" />
+    <Room
+        value={roomsMap.getBedrooms() || ""}
+        set={roomsMap.updateBedrooms}
+        name="Bedrooms"
+    />
+    <Room
+        value={roomsMap.getBathrooms() || ""}
+        set={roomsMap.updateBathrooms}
+        name="Bathrooms"
+    />
 </div>
 
 <style>
