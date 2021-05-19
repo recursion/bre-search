@@ -20,6 +20,16 @@
 >
 
 <style>
+    button {
+        border: 1px solid var(--e-global-color-primary);
+        color: var(--e-global-color-primary);
+        background: none;
+    }
+    button:hover {
+        background-color: var(--e-global-color-primary);
+        color: white;
+        transition: color 0.5s, background-color 0.5s;
+    }
     @media only screen and (max-width: 768px) {
         .bre-button {
             display: none;

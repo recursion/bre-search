@@ -8,15 +8,17 @@
 	import { locationsMap } from "./stores/locations";
 	import { priceMap } from "./stores/price";
 	import { roomsMap } from "./stores/rooms";
+	import { propertyTypeMap } from './stores/propertyType';
 	import { onMount } from "svelte";
 	const saveSearch = () => console.log("Saving search!");
-	export let locations, priceMin, priceMax, bedrooms, bathrooms;
+	export let locations, priceMin, priceMax, bedrooms, bathrooms, propertyType;
 	onMount(() => {
 		locationsMap.setLocationEl(locations);
 		priceMap.setMaxPriceEl(priceMax);
 		priceMap.setMinPriceEl(priceMin);
 		roomsMap.setBedroomsEl(bedrooms);
 		roomsMap.setBathroomsEl(bathrooms);
+		propertyTypeMap.setPropertyTypeEl(propertyType)
 	});
 </script>
 

@@ -22,7 +22,8 @@
 
 <style>
     .footer {
-        background-color: blue;
+        background-color: var(--e-global-color-primary);
+        color: var(--e-global-color-secondary);
         position: absolute;
         bottom: 0;
         left: 0;
@@ -55,8 +56,32 @@
         padding-bottom: 50px;
         z-index: 9999999999;
         position: absolute;
+        color: var(--e-global-color-primary);
     }
     .bre-modal-content {
         padding: 20px;
+        color: var(--e-global-color-primary);
+    }
+
+    :global(.bre-modal-content button) {
+        border: 1px solid var(--e-global-color-primary);
+        color: var(--e-global-color-primary);
+        background: none;
+    }
+    :global(.bre-modal-content button:hover) {
+        background-color: var(--e-global-color-primary);
+        color: white;
+        transition: color 0.5s, background-color 0.5s;
+    }
+
+    :global(.bre-modal .footer button) {
+        border: 1px solid white;
+        color: white;
+        background: none;
+    }
+    :global(.bre-modal .footer button:hover) {
+        background-color: var(white);
+        color: var(--e-global-color-primary);
+        transition: color 0.5s, background-color 0.5s;
     }
 </style>

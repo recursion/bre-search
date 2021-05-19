@@ -7,7 +7,8 @@ const app = new App({
 		priceMin: '#sf6_min_price',
 		priceMax: '#sf6_max_price',
 		bedrooms: '#sf6_tmin_bedrooms',
-		bathrooms: '#sf6_tmin_bathrooms'
+		bathrooms: '#sf6_tmin_bathrooms',
+		propertyType: "#sf6_select_property_type"
 	}
 });
 

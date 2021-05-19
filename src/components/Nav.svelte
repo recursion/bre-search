@@ -29,12 +29,14 @@
         option={$navState.options.homeType}
         name="Home Type"
     />
+    <!-- 
     <NavButton
         set={navState.setModal}
         option={$navState.options.more}
         name="More"
     />
     <button on:click={saveSearch} class="bre-button"> Save Search </button>
+    -->
 </div>
 
 <style>
@@ -45,6 +47,16 @@
     }
     .wpl_search_buttons {
         margin-left: 5px;
+    }
+    :global(.wpl_search_buttons button) {
+        border: 1px solid var(--e-global-color-primary);
+        color: var(--e-global-color-primary);
+        background: none;
+    }
+    :global(.wpl_search_buttons button:hover) {
+        background-color: var(--e-global-color-primary);
+        color: white;
+        transition: color 0.5s, background-color 0.5s;
     }
     @media only screen and (max-width: 768px) {
         .wpl_search_buttons {

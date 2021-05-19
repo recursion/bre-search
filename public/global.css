@@ -61,3 +61,17 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+html {
+    --e-global-color-primary: #024680;
+    --e-global-color-secondary: #0068B3;
+    --e-global-color-text: #B9E1F8;
+    --e-global-color-accent: #61CE70;
+    --e-global-typography-primary-font-family: "Roboto";
+    --e-global-typography-primary-font-weight: 600;
+    --e-global-typography-secondary-font-family: "Roboto Slab";
+    --e-global-typography-secondary-font-weight: 400;
+    --e-global-typography-text-font-family: "Roboto";
+    --e-global-typography-text-font-weight: 400;
+    --e-global-typography-accent-font-family: "Roboto";
+    --e-global-typography-accent-font-weight: 500;
+}

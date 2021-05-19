@@ -8,7 +8,7 @@
     const updateMin = (amt) => {
         min.value = amt;
         priceMap.updateMinPrice(amt);
-        navState.reset();
+        max.focus();
     };
     const updateMax = (amt) => {
         amt ? (max.value = amt) : (max.value = "");
@@ -121,6 +121,8 @@
     button {
         background: none;
         border: none;
+        padding-top: 1px;
+        padding-bottom: 1px;
     }
     .column {
         display: flex;
