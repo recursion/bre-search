@@ -11,14 +11,15 @@
 	import { propertyTypeMap } from './stores/propertyType';
 	import { onMount } from "svelte";
 	const saveSearch = () => console.log("Saving search!");
-	export let locations, priceMin, priceMax, bedrooms, bathrooms, propertyType;
+	export let locations, priceMin, priceMax, bedrooms, bathrooms, propertyType, subPropertyType;
 	onMount(() => {
 		locationsMap.setLocationEl(locations);
 		priceMap.setMaxPriceEl(priceMax);
 		priceMap.setMinPriceEl(priceMin);
 		roomsMap.setBedroomsEl(bedrooms);
 		roomsMap.setBathroomsEl(bathrooms);
-		propertyTypeMap.setPropertyTypeEl(propertyType)
+		propertyTypeMap.setPropertyTypeEl(propertyType);
+		propertyTypeMap.setSubPropertyTypeEl(subPropertyType);
 	});
 </script>
 

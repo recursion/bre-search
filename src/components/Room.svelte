@@ -11,7 +11,7 @@
 <div class="room">
     <h5>{name}</h5>
     <div class="buttons-row">
-        <button class:selected={selected === 0} on:click={() => updateSelection(0)}>Any</button>
+        <button class:selected={selected === 0 || selected === ""} on:click={() => updateSelection(0)}>Any</button>
         <button class:selected={selected === 1} on:click={() => updateSelection(1)}>1+</button>
         <button class:selected={selected === 2} on:click={() => updateSelection(2)}>2+</button>
         <button class:selected={selected === 3} on:click={() => updateSelection(3)}>3+</button>
@@ -25,7 +25,8 @@
         text-align: left;
     }
     .selected {
-        border: 1px solid blue;
+        background-color: var(--e-global-color-primary);
+        color: white;
     }
     .room {
         display: flex;

@@ -3,15 +3,14 @@
     import { priceMap } from "../stores/price";
 
     let visible = "left";
-    let min, max;
+    let maxEl;
+
     const updateVisible = (side) => (visible = side);
     const updateMin = (amt) => {
-        min.value = amt;
         priceMap.updateMinPrice(amt);
-        max.focus();
+        maxEl.focus();
     };
     const updateMax = (amt) => {
-        amt ? (max.value = amt) : (max.value = "");
         priceMap.updateMaxPrice(amt);
         navState.reset();
     };
@@ -39,85 +38,88 @@
 <div class="price-wrapper">
     <div class="column">
         <input
-            bind:this={min}
             on:input={minChange}
             type="tel"
             placeholder="min"
-            value={priceMap.getMinPrice() || ""}
+            value={$priceMap.minPrice || ""}
             on:focus={() => updateVisible("left")}
         />
         {#if visible === "left"}
-            <button class="left" on:click={() => updateMin(0)}>$0+</button>
-            <button class="left" on:click={() => updateMin(100000)}
+            <button class="left" class:active={$priceMap.minPrice === 0} on:click={() => updateMin(0)}>$0+</button>
+            <button class="left" class:active={$priceMap.minPrice === 100000} on:click={() => updateMin(100000)}
                 >$100,000+</button
             >
-            <button class="left" on:click={() => updateMin(200000)}
+            <button class="left"  class:active={$priceMap.minPrice === 200000} on:click={() => updateMin(200000)}
                 >$200,000+</button
             >
-            <button class="left" on:click={() => updateMin(300000)}
+            <button class="left" class:active={$priceMap.minPrice === 300000} on:click={() => updateMin(300000)}
                 >$300,000+</button
             >
-            <button class="left" on:click={() => updateMin(400000)}
+            <button class="left" class:active={$priceMap.minPrice === 400000} on:click={() => updateMin(400000)}
                 >$400,000+</button
             >
-            <button class="left" on:click={() => updateMin(500000)}
+            <button class="left" class:active={$priceMap.minPrice === 500000} on:click={() => updateMin(500000)}
                 >$500,000+</button
             >
-            <button class="left" on:click={() => updateMin(600000)}
+            <button class="left" class:active={$priceMap.minPrice === 600000} on:click={() => updateMin(600000)}
                 >$600,000+</button
             >
-            <button class="left" on:click={() => updateMin(700000)}
+            <button class="left" class:active={$priceMap.minPrice === 700000} on:click={() => updateMin(700000)}
                 >$700,000+</button
             >
-            <button class="left" on:click={() => updateMin(800000)}
+            <button class="left" class:active={$priceMap.minPrice === 800000} on:click={() => updateMin(800000)}
                 >$800,000+</button
             >
-            <button class="left" on:click={() => updateMin(900000)}
+            <button class="left" class:active={$priceMap.minPrice === 900000} on:click={() => updateMin(900000)}
                 >$900,000+</button
             >
         {/if}
     </div>
     <div class="column">
         <input
-            bind:this={max}
             on:input={maxChange}
+            bind:this={maxEl}
             type="tel"
             placeholder="max"
-            value={priceMap.getMaxPrice() || ""}
+            value={$priceMap.maxPrice || ""}
             on:focus={() => updateVisible("right")}
         />
         {#if visible === "right"}
-            <button class="right" on:click={() => updateMax(500000)}
+            <button class="right" class:active={$priceMap.maxPrice === 500000} on:click={() => updateMax(500000)}
                 >$500,000</button
             >
-            <button class="right" on:click={() => updateMax(600000)}
+            <button class="right" class:active={$priceMap.maxPrice === 600000} on:click={() => updateMax(600000)}
                 >$600,000</button
             >
-            <button class="right" on:click={() => updateMax(700000)}
+            <button class="right" class:active={$priceMap.maxPrice === 700000} on:click={() => updateMax(700000)}
                 >$700,000</button
             >
-            <button class="right" on:click={() => updateMax(800000)}
+            <button class="right" class:active={$priceMap.maxPrice === 800000} on:click={() => updateMax(800000)}
                 >$800,000</button
             >
-            <button class="right" on:click={() => updateMax(900000)}
+            <button class="right" class:active={$priceMap.maxPrice === 900000} on:click={() => updateMax(900000)}
                 >$900,000</button
             >
-            <button class="right" on:click={() => updateMax(1000000)}
+            <button class="right" class:active={$priceMap.maxPrice === 1000000} on:click={() => updateMax(1000000)}
                 >$1M</button
             >
-            <button class="right" on:click={() => updateMax(1500000)}
+            <button class="right" class:active={$priceMap.maxPrice === 1500000} on:click={() => updateMax(1500000)}
                 >$1.5M</button
             >
-            <button class="right" on:click={() => updateMax(1750000)}
+            <button class="right" class:active={$priceMap.maxPrice === 1750000} on:click={() => updateMax(1750000)}
                 >$1.75m</button
             >
-            <button class="right" on:click={() => updateMax()}>Any Price</button
+            <button class="right" class:active={!$priceMap.maxPrice} on:click={() => updateMax()}>Any Price</button
             >
         {/if}
     </div>
 </div>
 
 <style>
+    .active {
+        background-color: var(--e-global-color-primary);
+        color: white;
+    }
     button {
         background: none;
         border: none;

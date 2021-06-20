@@ -5,12 +5,12 @@
 
 <div class="rooms-wrapper">
     <Room
-        value={roomsMap.getBedrooms() || ""}
+        selected={$roomsMap.bedrooms || ""}
         set={roomsMap.updateBedrooms}
         name="Bedrooms"
     />
     <Room
-        value={roomsMap.getBathrooms() || ""}
+        selected={$roomsMap.bathrooms || ""}
         set={roomsMap.updateBathrooms}
         name="Bathrooms"
     />

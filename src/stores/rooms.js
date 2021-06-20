@@ -2,8 +2,10 @@ import { writable } from 'svelte/store';
 
 // store original input elements
 const initialRoomsMapState = () => ({
-    bedrooms: '',
-    bathrooms: ''
+    bedroomsEl: null,
+    bathroomsEl: null,
+    bedrooms: 0,
+    bathrooms:0 
 });
 
 const createRoomsMap = () => {
@@ -12,53 +14,43 @@ const createRoomsMap = () => {
         subscribe,
         setBathroomsEl: (el) => {
             update(state => {
-                return Object.assign(state, { bathrooms: document.querySelector(el) })
+                const bathroomsEl = document.querySelector(el);
+                if (bathroomsEl) {
+                    state.bathrooms = Number(bathroomsEl.value);
+                }
+                return Object.assign(state, { bathroomsEl })
             });
         },
         setBedroomsEl: (el) => {
             update(state => {
-                return Object.assign(state, { bedrooms: document.querySelector(el) })
-            });
-        },
-        getBedrooms: () => {
-            let current;
-            update(state => {
-                if (state.bedrooms) {
-                    current = state.bedrooms.value;
+                const bedroomsEl = document.querySelector(el);
+                if (bedroomsEl) {
+                    state.bedrooms = Number(bedroomsEl.value);
                 }
-                return state;
+                return Object.assign(state, { bedroomsEl });
             });
-            return current || 0;
-        },
-        getBathrooms: () => {
-            let current;
-            update(state => {
-                if (state.bathrooms) {
-                    current = state.bathrooms.value;
-                }
-                return state;
-            });
-            return current || 0;
         },
         updateBedrooms: (n) => {
             update(state => {
-                if (state.bedrooms) {
-                    state.bedrooms.value = n;
-                    state.bedrooms.dispatchEvent(new Event("change"));
+                if (state.bedroomsEl) {
+                    state.bedroomsEl.value = n;
+                    state.bedroomsEl.dispatchEvent(new Event("change"));
                 } else {
                     console.log("Updating bedrooms with: ", n);
                 }
+                state.bedrooms = n;
                 return state;
             });
         },
         updateBathrooms: (n) => {
             update(state => {
-                if (state.bathrooms) {
-                    state.bathrooms.value = n;
-                    state.bathrooms.dispatchEvent(new Event("change"));
+                if (state.bathroomsEl) {
+                    state.bathroomsEl.value = n;
+                    state.bathroomsEl.dispatchEvent(new Event("change"));
                 } else {
                     console.log("Updating bathrooms with: ", n);
                 }
+                state.bathrooms = n;
                 return state;
             });
         }

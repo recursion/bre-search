@@ -81,7 +81,8 @@
     }
     :global(.bre-modal .footer button:hover) {
         background-color: var(white);
-        color: var(--e-global-color-primary);
-        transition: color 0.5s, background-color 0.5s;
+        color: var(--e-global-color-text);
+        border-color: var(--e-global-color-text); 
+        transition: color 0.5s, background-color 0.5s, border 1s;
     }
 </style>
