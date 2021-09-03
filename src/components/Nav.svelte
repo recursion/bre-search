@@ -25,7 +25,7 @@
     }, 500);
 </script>
 
-<div class="wpl_search_buttons">
+<div class="nav-buttons">
     <input
         on:input={locationsMap.updateLocation}
         value={locationsMap.getLocation() || ""}
@@ -69,44 +69,28 @@
     input#multi_text_search_input {
         border-radius: none;
         border: 1px solid lightgray;
-        width: auto !important;
+        width: auto;
     }
-    .wpl_search_buttons {
-        margin-left: 5px;
-    }
-    :global(.wpl_search_buttons button) {
-        border: 1px solid var(--e-global-color-primary);
-        color: var(--e-global-color-primary);
-        background: none;
-    }
-    :global(.wpl_search_buttons button:hover) {
-        background-color: var(--e-global-color-primary);
-        color: white;
-        transition: color 0.5s, background-color 0.5s;
+    .nav-buttons {
+        padding: 5px;
     }
     h5 {
         display: inline-block;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 767px) {
         h5 {
             display: none;
         }
-    }
-    /*
-    @media only screen and (max-width: 768px) {
-        .wpl_search_buttons {
-            position: relative;
-            background-color: white;
+        .nav-buttons {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
         }
-        input {
-            width: 100%;
-        }
-        .wpl_search_buttons {
-            margin-left: 0;
-        }
-        h5, button.bre-button {
-            display: none !important;
+        input#multi_text_search_input {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            width: 97vw;
+            display: block;
         }
     }
-    */
 </style>
