@@ -1,5 +1,20 @@
 <script>
     import { navState } from "../stores/nav";
+    // generate style based on screen size
+    let modalStyle = "";
+    $: {
+        const width = window.screen.width;
+        if (width > 1024) {
+            modalStyle = `left: ${$navState.position.left};top:${$navState.position.top};`
+            console.log("Desktop: ", modalStyle);
+        } else if (width > 768) {
+            modalStyle = `position: relative;margin: 15vh auto;width:40vw;`;
+            console.log("Tablet: ", modalStyle);
+        } else {
+            modalStyle = `top:20px;left:10px;right:10px;bottom:50px;`;
+            console.log("Mobile: ", modalStyle);
+        }
+    };
 </script>
 
 <div
@@ -8,7 +23,7 @@
 >
     <div
         class="bre-modal"
-        style={`left: ${$navState.position.left};top:${$navState.position.top};`}
+        style="{modalStyle}"
         on:click|stopPropagation={() => {}}
     >
         <div class="bre-modal-content">
