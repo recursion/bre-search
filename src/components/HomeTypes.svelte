@@ -65,8 +65,10 @@
         <label for="home-type_all" class="">See All</label>
         <input
             id="home-type_all"
-            type="checkbox"
+            value="home-type_all"
+            type="radio"
             checked=true
+            name="property_type"
             bind:this={seeAllCheckbox}
             on:click={handleClick}
         />        
@@ -75,9 +77,11 @@
         <label for="home-type_residential" class="">Residential</label>
         <input
             id="home-type_residential"
-            type="checkbox"
+            value="home-type_residential"
+            type="radio"
             data-attribute-raw-value=17
             data-attribute-raw-target="propertyType"
+            name="property_type"
             on:click={handleClick}
         />        
     </div>
@@ -85,7 +89,9 @@
         <label for="home-type_commercial" class="">Commercial</label>
         <input
             id="home-type_commercial"
-            type="checkbox"
+            value="home-type_commercial"
+            name="property_type"
+            type="radio"
             data-attribute-raw-value=19
             data-attribute-raw-target="propertyType"
             on:click={handleClick}
@@ -95,55 +101,64 @@
         <label for="home-type_land" class="">Land</label>
         <input
             id="home-type_land"
-            type="checkbox"
+            value="home-type_land"
+            name="property_type"
+            type="radio"
             data-attribute-raw-value=18
             data-attribute-raw-target="propertyType"
             on:click={handleClick}
         />        
     </div>
-        <!--
-        <div class="control">
-            <label for="home-type_singleFamily" class="">Single Family</label>
-            <input
-                id="home-type_singleFamily"
-                type="checkbox"
-                data-attribute-raw-value=4
-                data-attribute-raw-target="subPropertyType"
-                on:click={handleClick}
-            />        
-        </div>
-        <div class="control">
-            <label for="home-type_condos" class="">Condos</label>
-            <input
-                id="home-type_condos"
-                type="checkbox"
-                data-attribute-raw-value=5
-                data-attribute-raw-target="subPropertyType"
-                on:click={handleClick}
-            />        
-        </div>
-
-        <div class="control">
-            <label for="home-type_acreage" class="">Acreage</label>
-            <input
-                id="home-type_acreage"
-                type="checkbox"
-                data-attribute-raw-value=0
-                data-attribute-raw-target="subPropertyType"
-                on:click={handleClick}
-            />        
-        </div>
-        <div class="control">
-            <label for="home-type_subdivision" class="">Subdivision</label>
-            <input
-                id="home-type_subdivision"
-                type="checkbox"
-                data-attribute-raw-value=3
-                data-attribute-raw-target="subPropertyType"
-                on:click={handleClick}
-            />        
-        </div>
-        -->
+    <div class="control">
+        <label for="home-type_singleFamily" class="">Single Family</label>
+        <input
+            id="home-type_singleFamily"
+            value="home-type_singleFamily"
+            name="property_type"
+            type="radio"
+            data-attribute-raw-value=4
+            data-attribute-raw-target="subPropertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    <div class="control">
+        <label for="home-type_condos" class="">Condos</label>
+        <input
+            id="home-type_condos"
+            value="home-type_condos"
+            name="property_type"
+            type="radio"
+            data-attribute-raw-value=5
+            data-attribute-raw-target="subPropertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    <div class="control">
+        <label for="home-type_acreage" class="">Acreage</label>
+        <input
+            id="home-type_acreage"
+            value="home-type_acreage"
+            name="property_type"
+            type="radio"
+            data-attribute-raw-value=0
+            data-attribute-raw-target="subPropertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    <!--
+    <div class="control">
+        <label for="home-type_subdivision" class="">Subdivision</label>
+        <input
+            id="home-type_subdivision"
+            value="home-type_subdivision"
+            name="property_type"
+            type="radio"
+            data-attribute-raw-value=3
+            data-attribute-raw-target="subPropertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    -->
 </fieldset>
             
 <style>
@@ -157,9 +172,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 125px;
+        width: 150px;
     }
     div {
         text-align: center;
+    }
+    input {
+        margin: 0;
     }
 </style>
