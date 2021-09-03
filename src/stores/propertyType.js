@@ -66,41 +66,19 @@ const createPropertyTypeMap = () => {
                 }
                 return state;
             });
-        /*
-            update(state => {
-                if (state && state.propertyTypeEl) {
-                    // find the input element and update its state
-                    state.propertyTypeEl.parentElement.querySelectorAll("input[type='checkbox']").forEach(el => {
-                        if (String(el.value) === String(value)) {
-                            el.checked = checked;
-                            el.dispatchEvent(new Event("click"));
-                        }
-                    });
-                    state.propertyTypeEl.value = state.propertyType.join(",");
-                    state.propertyTypeEl.dispatchEvent(new Event("change"));
-                }
-                if (checked && state && state.propertyType.includes(value) === -1) {
-                    state.propertyType.push(value);
-                } else if (!checked && state.propertyType.includes(value) !== -1) {
-                    state.propertyType = state.propertyType.filter(n => n!== value);
-                }
-                return state;
-            });
-        */
         },
 
         /**
          * Any time a sub type is selected we should update the coinciding top level nav
          */
         updateSubPropertyType: (value, selected) => {
-            console.log("got -> ", value, selected);
+            console.log("Update SubProperty Type.")
             update(state => {
+                console.log("-----> #-> ", value, selected);
                 if (state && state.subPropertyTypeEl) {
                     // find the input element and update its state
-
                     for (let el of state.subPropertyTypeEl.options) {
                         if (String(el.value) === String(value)) {
-                            console.log("Setting option: ", el, " to: ", selected);
                             el.selected = selected;
                         }
                     }
@@ -108,10 +86,17 @@ const createPropertyTypeMap = () => {
                     state.subPropertyTypeEl.dispatchEvent(new Event("change"));
                 }
 
-                if (selected && state.subPropertyType.includes(value) === -1) {
-                    state.subPropertyType.push(value);
-                } else if (!selected && state.subPropertyType.includes(value) !== -1) {
-                    state.subPropertyType = state.subPropertyType.filter(n => n!== value);
+                if (selected && state.subPropertyType.indexOf(value) === -1) {
+                    // this doesnt need to be an array (did it ever?)
+                    // but using for now since thats how it was built
+                    console.log("Setting value: ", state.subPropertyType, " to: " , [value]);
+                    state.subPropertyType = [value];
+                } else if (!selected && state.subPropertyType.indexOf(value) !== -1) {
+                    console.log("Removing value: ", value, " from: ", state.subPropertyType);
+                    // Old way of removing (no longer needed)
+                    // state.propertyType = state.propertyType.filter(n => n!== value);
+                    state.subPropertyType = [];
+                    console.log("#> ", state.subPropertyType);
                 }
                 return state;
             });
