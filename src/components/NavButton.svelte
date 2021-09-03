@@ -31,11 +31,10 @@
         color: white;
         transition: color 0.5s, background-color 0.5s;
     }
-    /*
-    @media only screen and (max-width: 768px) {
-        .bre-button {
-            display: none;
+    @media only screen and (max-width: 767px) {
+        button {
+            grid-row-start: 2;
+            padding: 0.25rem 0.5rem;
         }
     }
-    */
 </style>
