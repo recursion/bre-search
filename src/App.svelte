@@ -11,7 +11,7 @@
 	import { propertyTypeMap } from './stores/propertyType';
 	import { onMount } from "svelte";
 	const saveSearch = () => console.log("Saving search!");
-	export let locations, priceMin, priceMax, bedrooms, bathrooms, propertyType, subPropertyType;
+	export let locations, priceMin, priceMax, bedrooms, bathrooms, propertyType, subPropertyType, searchButton;
 	onMount(() => {
 		locationsMap.setLocationEl(locations);
 		priceMap.setMaxPriceEl(priceMax);
@@ -23,7 +23,7 @@
 	});
 </script>
 
-<Nav {saveSearch} />
+<Nav {saveSearch} {searchButton}/>
 <Modal>
 	{#if $navState.current === "price"}
 		<Price />
