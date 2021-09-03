@@ -8,7 +8,7 @@
             modalStyle = `left: ${$navState.position.left};top:${$navState.position.top};`
             console.log("Desktop: ", modalStyle);
         } else if (width > 768) {
-            modalStyle = `position: relative;margin: 15vh auto;width:40vw;`;
+            modalStyle = `position: relative;margin: 15vh auto;width:50vw;`;
             console.log("Tablet: ", modalStyle);
         } else {
             modalStyle = `top:20px;left:10px;right:10px;bottom:50px;`;
