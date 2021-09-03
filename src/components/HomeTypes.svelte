@@ -1,16 +1,32 @@
 <script>
+    import { onMount } from "svelte";
     import { propertyTypeMap } from "../stores/propertyType";
     let seeAllCheckbox;
 
+    onMount(() => {
+        const currentValue = $propertyTypeMap.propertyType[0];
+        if (currentValue && seeAllCheckbox) {
+            const sel = "[data-attribute-raw-value='"+ currentValue +"']";
+            const target = document.querySelector(sel);
+            if (target) {
+                seeAllCheckbox.checked = false;
+                target.checked = true;
+            }
+        }
+    });
 
     const handleClick = e => {
         const value = e.target.getAttribute("data-attribute-raw-value");
         const typeTarget = e.target.getAttribute("data-attribute-raw-target");
+
+        const resetInputs = () => {
+            const inputs = document.querySelectorAll(".home-type input");
+            inputs.forEach(el => el.checked = false);
+        }
         
         if (!value && !typeTarget) {
             propertyTypeMap.reset();
-            const inputs = document.querySelectorAll(".home-type input");
-            inputs.forEach(el => el.checked = false);
+            resetInputs();
             seeAllCheckbox.checked = true;
             return;
         };
@@ -22,23 +38,31 @@
                 }
                 fn(value, true);
             } else {
-                fn(value, true);
+                fn(value, false);
             }
-
+            // reset all check boxes
+            // but keep the current one checked
+            // this is a bit of a hack, and should be
+            // radio boxes - but this will do for now.
+            const checked = e.target.checked;
+            resetInputs();
+            target.checked = checked;
         };
 
         if (typeTarget === 'propertyType') {
             updateProperty(e.target, propertyTypeMap.updatePropertyType);
         } else if (typeTarget === 'subPropertyType') {
             updateProperty(e.target, propertyTypeMap.updateSubPropertyType);
+        } else {
+            console.log("Unknown type target: ", typeTarget);
         }
     };
 </script>
 
 <legend>Property Type</legend>
 <fieldset class="home-type">
-    <div class="see-all control">
-        <label for="home-type_residential" class="">See All</label>
+    <div class="control">
+        <label for="home-type_all" class="">See All</label>
         <input
             id="home-type_all"
             type="checkbox"
@@ -47,17 +71,37 @@
             on:click={handleClick}
         />        
     </div>
-    <div class="container">
-        <div class="control">
-            <label for="home-type_residential" class="">Residential</label>
-            <input
-                id="home-type_residential"
-                type="checkbox"
-                data-attribute-raw-value=17
-                data-attribute-raw-target="propertyType"
-                on:click={handleClick}
-            />        
-        </div>
+    <div class="control">
+        <label for="home-type_residential" class="">Residential</label>
+        <input
+            id="home-type_residential"
+            type="checkbox"
+            data-attribute-raw-value=17
+            data-attribute-raw-target="propertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    <div class="control">
+        <label for="home-type_commercial" class="">Commercial</label>
+        <input
+            id="home-type_commercial"
+            type="checkbox"
+            data-attribute-raw-value=19
+            data-attribute-raw-target="propertyType"
+            on:click={handleClick}
+        />        
+    </div>
+    <div class="control">
+        <label for="home-type_land" class="">Land</label>
+        <input
+            id="home-type_land"
+            type="checkbox"
+            data-attribute-raw-value=18
+            data-attribute-raw-target="propertyType"
+            on:click={handleClick}
+        />        
+    </div>
+        <!--
         <div class="control">
             <label for="home-type_singleFamily" class="">Single Family</label>
             <input
@@ -78,18 +122,7 @@
                 on:click={handleClick}
             />        
         </div>
-    </div>
-    <div class="container">
-        <div class="control">
-            <label for="home-type_land" class="">Land</label>
-            <input
-                id="home-type_land"
-                type="checkbox"
-                data-attribute-raw-value=18
-                data-attribute-raw-target="propertyType"
-                on:click={handleClick}
-            />        
-        </div>
+
         <div class="control">
             <label for="home-type_acreage" class="">Acreage</label>
             <input
@@ -110,49 +143,21 @@
                 on:click={handleClick}
             />        
         </div>
-    </div>
-
-    <div class="container">
-        <div class="control">
-            <label for="home-type_commercial" class="">Commercial</label>
-            <input
-                id="home-type_commercial"
-                type="checkbox"
-                data-attribute-raw-value=19
-                data-attribute-raw-target="propertyType"
-                on:click={handleClick}
-            />        
-        </div>
-    </div>
+        -->
 </fieldset>
             
 <style>
     .home-type{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-rows: 25px 1fr;
-        grid-gap: 10px;
+        display: flex;
+        flex-direction: column;
         border: none;
-    }
-    .container {
-        border: 1px solid var(--e-global-color-primary);
-        border-radius: 20px;
-        padding: 10px;
+        border-top: 1px solid var(--e-global-color-secondary);
     }
     .control {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         width: 125px;
-    }
-    .see-all {
-        grid-column-start: 1;
-        grid-column-end: 4;
-        justify-content: center;;
-        width: 100%;
-    }
-    .see-all input {
-        margin-left: 10px;
     }
     div {
         text-align: center;
